@@ -1,6 +1,9 @@
 package nzb
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 type File struct {
 	Poster   string    `xml:"poster,attr"`
@@ -17,8 +20,14 @@ type Segment struct {
 	Id     string `xml:",innerxml"`
 }
 
-func (f *File) Name() string {
+func (f *File) Name() (string, error) {
 	parts := strings.Split(f.Subject, `"`)
-	fName := strings.Replace(parts[1], "/", "-", -1)
-	return fName
+
+	n := ""
+	if len(parts) > 1 {
+		n = strings.Replace(parts[1], "/", "-", -1)
+	} else {
+		return "", fmt.Errorf("could not parse subject")
+	}
+	return n, nil
 }
