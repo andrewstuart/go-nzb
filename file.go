@@ -1,5 +1,7 @@
 package nzb
 
+import "strings"
+
 type File struct {
 	Poster   string    `xml:"poster,attr"`
 	Date     int       `xml:"date,attr"`
@@ -13,4 +15,10 @@ type Segment struct {
 	Number int    `xml:"number,attr"`
 	Bytes  int    `xml:"bytes,attr"`
 	Id     string `xml:",innerxml"`
+}
+
+func (f *File) Name() string {
+	parts := strings.Split(f.Subject, `"`)
+	fName := strings.Replace(parts[1], "/", "-", -1)
+	return fName
 }
