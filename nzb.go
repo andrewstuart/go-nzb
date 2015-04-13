@@ -33,3 +33,15 @@ func (m *Meta) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 
 	return nil
 }
+
+func (nzb *NZB) Size() int {
+	s := 0
+
+	for _, f := range nzb.Files {
+		for _, seg := range f.Segments {
+			s += seg.Bytes
+		}
+	}
+
+	return s
+}
