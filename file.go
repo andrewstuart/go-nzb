@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+//File is a go struct representation of the nzb file elements. It contains the
+//appropriate field tags and methods for deserialization
 type File struct {
 	Poster   string    `xml:"poster,attr"`
 	Date     int       `xml:"date,attr"`
@@ -17,9 +19,10 @@ type File struct {
 type Segment struct {
 	Number int    `xml:"number,attr"`
 	Bytes  int    `xml:"bytes,attr"`
-	Id     string `xml:",innerxml"`
+	ID     string `xml:",innerxml"`
 }
 
+//Name returns the estimated filename that an NZB represents.
 func (f *File) Name() (string, error) {
 	parts := strings.Split(f.Subject, `"`)
 
