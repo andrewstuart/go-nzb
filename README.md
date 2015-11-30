@@ -1,7 +1,13 @@
 # nzb
+
+[![GoDoc](https://godoc.org/github.com/andrewstuart/go-nzb?status.svg)](https://godoc.org/github.com/andrewstuart/go-nzb)
+
 --
     import "github.com/andrewstuart/go-nzb"
 
+Package nzb is intended to be a library that basically just provides go structs
+that one can unmarshall an NZB file into and have enough information to locate
+the associated files on usenet.
 
 ## Usage
 

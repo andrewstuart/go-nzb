@@ -1,3 +1,6 @@
+//Package nzb is intended to be a library that basically just provides go
+//structs that one can unmarshall an NZB file into and have enough information
+//to locate the associated files on usenet.
 package nzb
 
 import (
